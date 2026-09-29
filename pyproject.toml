@@ -1,0 +1,25 @@
+[project]
+name = "learn2"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Yernaz Kengesbekov", email = "yernazkenesbekov24@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "alembic>=1.20.0",
+    "asyncpg>=0.31.0",
+    "fastapi>=0.142.1",
+    "pydantic>=2.13.5",
+    "pydantic-settings>=2.15.0",
+    "pyjwt>=2.15.1",
+    "sqlalchemy>=2.1.1",
+    "uvicorn>=0.54.0",
+]
+
+
+[dependency-groups]
+dev = [
+    "ruff>=0.16.9",
+]
