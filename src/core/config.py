@@ -1,12 +1,13 @@
 import os
+from typing import Literal
 
 from pydantic import BaseModel
 from pydantic_settings import BaseSettings, SettingsConfigDict
-from typing import Literal
 from sqlalchemy.engine import URL
 
-Environment = Literal['local', 'ci', 'prod']
-LogLevel = Literal['DEBUG', 'INFO', "WARNING", 'ERROR', 'CRITICAL']
+Environment = Literal["local", "ci", "prod"]
+LogLevel = Literal["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"]
+
 
 # NOTE: Настройки сервера
 class RunConfig:
@@ -14,11 +15,13 @@ class RunConfig:
     PORT: int = 8000
     RELOAD: bool = False
 
+
 # NOTE: Настройка приложении
 class AppConfig(BaseModel):
     PROJECT_NAME: str = "Tempalte 1"
     ENVIRONMENT: Environment = "local"
     LOGLEVEL: LogLevel = "INFO"
+
 
 # Настройки базы данных
 class PostgresConfig(BaseModel):
@@ -29,8 +32,8 @@ class PostgresConfig(BaseModel):
     DATABASE: str = "postgresql"
     DRIVER: str = "postgresql+asyncpg"
 
-    ECHO: bool = False
-    POOL_SIZE: int = 5
+    AUTOFLUSH: bool = True
+    EXPIRE_ON_COMMIT: bool = False
 
     def sqlalchemy_url(self) -> URL | str:
         url = URL.create(
@@ -44,6 +47,7 @@ class PostgresConfig(BaseModel):
 
         return url
 
+
 class Settings(BaseSettings):
     run: RunConfig = RunConfig()
     app: AppConfig = AppConfig()
@@ -55,3 +59,6 @@ class Settings(BaseSettings):
         env_file_encoding="utf-8",
         extra="ignore",
     )
+
+
+settings = Settings()
