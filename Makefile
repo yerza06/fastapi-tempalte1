@@ -1,4 +1,4 @@
-.PHONY: help run sync format test test-unit test-integration create-user
+.PHONY: help run sync format test test-unit test-integration test-api create-user
 
 help:
 	@echo "make run               Запустить приложении"
@@ -7,6 +7,7 @@ help:
 	@echo "make test              Запустить все тесты"
 	@echo "make test-unit         Запустить только unit-тесты"
 	@echo "make test-integration  Запустить интеграционные тесты (нужен PostgreSQL)"
+	@echo "make test-api          Запустить API тесты (нужен PostgreSQL)"
 	@echo "make create-user       Создать нового пользователя"
 
 run:
@@ -27,6 +28,9 @@ test-unit:
 
 test-integration:
 	uv run pytest -v tests/integration
+
+test-api:
+	uv run pytest -v tests/api
 
 create-user:
 	uv run -m scripts.create_user
