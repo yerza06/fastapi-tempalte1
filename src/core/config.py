@@ -5,7 +5,9 @@ from pydantic import BaseModel
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from sqlalchemy.engine import URL
 
-Environment = Literal["local", "ci", "prod"]
+# ``prod`` remains supported for existing deployments. Prefer ``production``
+# for all new environment configuration.
+Environment = Literal["local", "ci", "prod", "production"]
 LogLevel = Literal["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"]
 
 

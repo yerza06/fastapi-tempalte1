@@ -1,7 +1,10 @@
 from fastapi import FastAPI
 
 from src.core.config import settings
+from src.core.logging import LOGGING_CONFIG, configure_logging
 from src.modules import modules_router
+
+configure_logging()
 
 app = FastAPI()
 app.include_router(modules_router)
@@ -20,4 +23,6 @@ if __name__ == "__main__":
         host=settings.run.HOST,
         port=settings.run.PORT,
         reload=settings.run.RELOAD,
+        log_config=LOGGING_CONFIG,
+        log_level=settings.app.LOGLEVEL.lower(),
     )
