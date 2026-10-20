@@ -20,9 +20,13 @@ class RunConfig:
 
 # NOTE: Настройка приложении
 class AppConfig(BaseModel):
-    PROJECT_NAME: str = "Tempalte 1"
-    ENVIRONMENT: Environment = "local"
+    TITLE: str = "Tempalte 1"
+    VERSION: str = "0.1.0"
+    DEBUG: bool = False
+    SUMMARY: str = "Шаблон REST API"
+    DESCRIPTION: str = "Описании"
     LOGLEVEL: LogLevel = "INFO"
+    ENVIRONMENT: Environment = "local"
 
 
 # Настройки базы данных

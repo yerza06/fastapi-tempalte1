@@ -6,13 +6,19 @@ from src.modules import modules_router
 
 configure_logging()
 
-app = FastAPI()
+app = FastAPI(
+    title=settings.app.TITLE,
+    debug=settings.app.DEBUG,
+    summary=settings.app.SUMMARY,
+    description=settings.app.DESCRIPTION,
+    version=settings.app.VERSION
+)
 app.include_router(modules_router)
 
 
 @app.get("/")
 async def home():
-    return {"message": "Hellow World!"}
+    return {"message": "Hello World!"}
 
 
 if __name__ == "__main__":
