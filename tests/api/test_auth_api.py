@@ -17,7 +17,7 @@ async def test_home(client):
     response = await client.get("/")
 
     assert response.status_code == 200
-    assert response.json() == {"message": "Hellow World!"}
+    assert response.json() == {"message": "Hello World!"}
 
 
 class TestRegister:
